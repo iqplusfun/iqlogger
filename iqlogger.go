@@ -219,7 +219,7 @@ func (esLogger *Logger) logFileCloseTimer() {
 ///////////////////////////////////////////////////////
 
 // Log if you need to call with Options
-func (esLogger *Logger) Log(level uint32, mainMsg, extraMsg string, opt ...OptEinsteinLogger) error {
+func (esLogger *Logger) Log(level uint32, mainMsg, extraMsg string, opt ...OptEinsteinLogger) {
 	if !esLogger.isLogfileOpen() {
 		esLogger.logFileOpen()
 	}
@@ -258,45 +258,44 @@ func (esLogger *Logger) Log(level uint32, mainMsg, extraMsg string, opt ...OptEi
 	// clear DataFields
 	esLogger.DataFields = map[string]interface{}{}
 	esLogger.Opt = nil
-	return nil
 }
 
 ///////////////////////////////////////////////////////
 
 // Panic ...
-func (esLogger *Logger) Panic(args ...interface{}) error {
+func (esLogger *Logger) Panic(args ...interface{}) {
 
-	return esLogger.Log(LoglvlPanic, fmt.Sprint(args...), "")
+	esLogger.Log(LoglvlPanic, fmt.Sprint(args...), "")
 }
 
 // Fatal ...
-func (esLogger *Logger) Fatal(args ...interface{}) error {
+func (esLogger *Logger) Fatal(args ...interface{}) {
 
-	return esLogger.Log(LoglvlFatal, fmt.Sprint(args...), "")
+	esLogger.Log(LoglvlFatal, fmt.Sprint(args...), "")
 }
 
 // Error ...
-func (esLogger *Logger) Error(args ...interface{}) error {
+func (esLogger *Logger) Error(args ...interface{}) {
 
-	return esLogger.Log(LoglvlError, fmt.Sprint(args...), "")
+	esLogger.Log(LoglvlError, fmt.Sprint(args...), "")
 }
 
 // Warn ...
-func (esLogger *Logger) Warn(args ...interface{}) error {
+func (esLogger *Logger) Warn(args ...interface{}) {
 
-	return esLogger.Log(LoglvlWarn, fmt.Sprint(args...), "")
+	esLogger.Log(LoglvlWarn, fmt.Sprint(args...), "")
 }
 
 // Info ...
-func (esLogger *Logger) Info(args ...interface{}) error {
+func (esLogger *Logger) Info(args ...interface{}) {
 
-	return esLogger.Log(LoglvlInfo, fmt.Sprint(args...), "")
+	esLogger.Log(LoglvlInfo, fmt.Sprint(args...), "")
 }
 
 // Debug ...
-func (esLogger *Logger) Debug(args ...interface{}) error {
+func (esLogger *Logger) Debug(args ...interface{}) {
 
-	return esLogger.Log(LoglvlDebug, fmt.Sprint(args...), "")
+	esLogger.Log(LoglvlDebug, fmt.Sprint(args...), "")
 }
 
 ///////////////////////////////////////////////////////
